@@ -40,6 +40,13 @@ class ReduxRouter extends Component {
     this.receiveRoutes(getRoutesFromProps(nextProps));
   }
 
+  componentWillUnmount() {
+    const {store} = this.context;
+    if(store.unlisten){
+      store.unlisten();
+    }
+  }
+
   receiveRoutes(routes) {
     if (!routes) return;
 

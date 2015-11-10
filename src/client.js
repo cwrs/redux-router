@@ -13,7 +13,7 @@ function historySynchronization(next) {
 
     let routerState;
 
-    history.listen((error, nextRouterState) => {
+    let unlisten = history.listen((error, nextRouterState) => {
       if (error) {
         onError(error);
         return;
@@ -40,7 +40,7 @@ function historySynchronization(next) {
       routerState = nextRouterState;
     });
 
-    return store;
+    return {...store, unlisten};
   };
 }
 
